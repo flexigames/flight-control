@@ -1,18 +1,19 @@
 import arrow from "../components/arrow";
 import controllable from "../components/controllable";
+import destination from "../components/destination";
 import destroyAfterExit from "../components/destroyAfterExit";
 import movable from "../components/movable";
 
-const speed = 20;
+const speed = 100;
 const size = 12;
 
-export default function createPlane(
-  position = vec2(width() / 2, height() / 2),
-  direction = randi(360)
-) {
+export default function createPlane(position, destinationPos) {
+  const direction = destinationPos.angle(position);
+
   return add([
     "plane",
     pos(position),
+    destination(destinationPos),
     arrow(size),
     origin("center"),
     rotate(direction),

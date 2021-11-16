@@ -1,10 +1,7 @@
 import createPlane from "../entities/plane";
-import { getRandomPointOnCircle } from "../lib/lib";
+import { getRandomPointOnCircle, getRandomPointOnSides } from "../lib/lib";
 
 export default function game() {
-  createPlane(vec2(0, height() / 2), 0);
-  createPlane(vec2(width(), height() / 2), 180);
-
   handlePlaneCrashes();
   handlePlaneControl();
   handlePlaneSpawns();
@@ -18,9 +15,8 @@ export default function game() {
 
     loop(spawnInterval, () => {
       const spawn = getRandomPointOnCircle(center, outerSpawnRadius);
-      const destination = getRandomPointOnCircle(center, innerSpawnRadius);
-
-      createPlane(spawn, destination.angle(spawn));
+      const destination = getRandomPointOnSides();
+      createPlane(spawn, destination);
     });
   }
 
@@ -32,9 +28,6 @@ export default function game() {
 
   function handlePlaneControl() {
     const planes = get("plane");
-
-    let activePlane = planes[0];
-    activePlane.toggleActive();
 
     onKeyPress("space", () => {
       const planes = get("plane").filter(({ hasBeenInside }) => hasBeenInside);
