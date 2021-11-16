@@ -1,5 +1,6 @@
 import kaboom from 'kaboom';
-import createPlane from './entities/plane';
+import game from './scenes/game';
+import gameover from './scenes/gameover';
 
 kaboom({
   background: [20, 40, 50],
@@ -7,6 +8,10 @@ kaboom({
   height: 360,
   scale: 2,
   canvas: document.getElementById('canvas'),
+  font: 'sink'
 });
 
-createPlane();
+scene('game', game);
+scene('gameover', gameover);
+
+go('game');

@@ -1,16 +1,21 @@
-import arrow from '../components/arrow'
+import arrow from '../components/arrow';
 
 const speed = 64;
+const size = 8;
 
-export default function createPlane() {
-  const direction = randi(360);
-
+export default function createPlane(
+  position = vec2(width() / 2, height() / 2),
+  direction = randi(360)
+) {
   return add([
-    pos(width() / 2, height() / 2),
-    arrow(),
+    'plane',
+    pos(position),
+    arrow(size),
     origin('center'),
     rotate(direction),
     move(direction, speed),
+    cleanup(),
+    area({ width: size, height: size }),
     color(120, 255, 140),
   ]);
 }
