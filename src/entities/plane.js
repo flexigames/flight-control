@@ -9,7 +9,7 @@ const speed = 10;
 const size = 12;
 
 export default function createPlane(position, destinationPos) {
-  const direction = destinationPos.angle(position);
+  const direction = destinationPos.angle(position) + randi(-10, 10);
 
   return add([
     "plane",
@@ -26,3 +26,5 @@ export default function createPlane(position, destinationPos) {
     name(),
   ]);
 }
+
+

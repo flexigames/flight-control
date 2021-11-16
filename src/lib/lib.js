@@ -25,3 +25,4 @@ export function getRandomPointOnSides(padding = 0) {
 
   return destination;
 }
+
