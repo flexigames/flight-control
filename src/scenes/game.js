@@ -10,8 +10,9 @@ export default function game() {
   handlePlaneSpawns();
 
   function handlePlaneSpawns() {
-    const spawnInterval = 1;
-    const outerSpawnRadius = Math.max(width(), height()) / 2;
+    const spawnInterval = 5;
+    const outerSpawnRadius =
+      Math.sqrt(width() * width() + height() * height()) / 2;
     const innerSpawnRadius = Math.min(width(), height()) / 2;
     const center = vec2(width() / 2, height() / 2);
 

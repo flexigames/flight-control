@@ -1,19 +1,26 @@
 export default function controllable(turnSpeed = 2) {
   return {
-    id: 'controllable',
-    require: ['rotate'],
+    id: "controllable",
+    require: ["rotate", "area"],
     active: false,
-    add(){
-      this.defaultColor = this.color
+    add() {
+      this.defaultColor = this.color;
     },
     update() {
-      if (!this.active) return
+      if (this.isClicked()) {
+        get("plane")
+          .find((plane) => plane.active)
+          ?.toggleActive();
+        this.toggleActive();
+      }
 
-      if (isKeyDown('left')) {
+      if (!this.active) return;
+
+      if (isKeyDown("left")) {
         this.angle -= turnSpeed;
       }
 
-      if (isKeyDown('right')) {
+      if (isKeyDown("right")) {
         this.angle += turnSpeed;
       }
     },
@@ -23,8 +30,8 @@ export default function controllable(turnSpeed = 2) {
       if (this.active) {
         this.color = rgb(255, 255, 255);
       } else {
-        this.color = this.defaultColor
+        this.color = this.defaultColor;
       }
-    }
+    },
   };
 }
