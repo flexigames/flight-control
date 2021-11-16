@@ -10,14 +10,14 @@ export default function game() {
   createInput();
 
   function handlePlaneSpawns() {
-    const spawnInterval = 1;
+    const spawnInterval = 3;
     const outerSpawnRadius =
       Math.sqrt(width() * width() + height() * height()) / 2;
     const innerSpawnRadius = Math.min(width(), height()) / 2;
     const center = vec2(width() / 2, height() / 2);
 
     loop(spawnInterval, () => {
-      const spawn = getRandomPointOnCircle(center, outerSpawnRadius);
+      const spawn = getRandomPointOnSides(20);
       const destination = getRandomPointOnSides();
       createPlane(spawn, destination);
     });

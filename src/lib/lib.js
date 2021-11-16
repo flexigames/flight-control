@@ -6,21 +6,21 @@ export function getRandomPointOnCircle(center, radius) {
   );
 }
 
-export function getRandomPointOnSides() {
+export function getRandomPointOnSides(padding = 0) {
   const destination = vec2();
   const side = choose(["left", "right", "top", "bottom"]);
   if (side === "left") {
-    destination.x = 0;
+    destination.x = -padding;
     destination.y = randi(height());
   } else if (side === "right") {
-    destination.x = width();
+    destination.x = width() + padding;
     destination.y = randi(height());
   } else if (side === "top") {
     destination.x = randi(width());
-    destination.y = 0;
+    destination.y = -padding;
   } else if (side === "bottom") {
     destination.x = randi(width());
-    destination.y = height();
+    destination.y = height() + padding;
   }
 
   return destination;

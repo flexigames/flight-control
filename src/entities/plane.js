@@ -20,7 +20,7 @@ export default function createPlane(position, destinationPos) {
     rotate(direction),
     movable(randi(speed / 2, speed)),
     controllable(),
-    area({ width: size, height: size }),
+    area({ width: size / 2, height: size / 2 }),
     color(120, 255, 140),
     destroyAfterExit(),
     name(),
