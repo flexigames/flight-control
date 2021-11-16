@@ -1,4 +1,5 @@
 import kaboom from 'kaboom';
+import createPlane from './entities/plane';
 
 kaboom({
   background: [20, 40, 50],
@@ -7,3 +8,5 @@ kaboom({
   scale: 2,
   canvas: document.getElementById('canvas'),
 });
+
+createPlane();
