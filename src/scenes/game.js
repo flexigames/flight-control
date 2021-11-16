@@ -1,12 +1,13 @@
 import createPlane from "../entities/plane";
 import createScore from "../entities/score";
 import { getRandomPointOnCircle, getRandomPointOnSides } from "../lib/lib";
+import createInput from "./input";
 
 export default function game() {
   handlePlaneCrashes();
-  handlePlaneControl();
   handlePlaneSpawns();
   createScore();
+  createInput();
 
   function handlePlaneSpawns() {
     const spawnInterval = 5;
@@ -25,17 +26,6 @@ export default function game() {
   function handlePlaneCrashes() {
     onCollide("plane", "plane", () => {
       go("gameover");
-    });
-  }
-
-  function handlePlaneControl() {
-    const planes = get("plane");
-
-    onKeyPress("space", () => {
-      const planes = get("plane").filter(({ hasBeenInside }) => hasBeenInside);
-      activePlane.toggleActive();
-      activePlane = planes[(planes.indexOf(activePlane) + 1) % planes.length];
-      activePlane.toggleActive();
     });
   }
 }
