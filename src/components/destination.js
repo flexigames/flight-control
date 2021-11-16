@@ -20,6 +20,7 @@ export default function destination(position) {
     },
     update() {
       if (this.isColliding(this.destinationCircle)) {
+        get('score')[0].increase();
         this.destroy();
       }
     },

@@ -1,10 +1,12 @@
 import createPlane from "../entities/plane";
+import createScore from "../entities/score";
 import { getRandomPointOnCircle, getRandomPointOnSides } from "../lib/lib";
 
 export default function game() {
   handlePlaneCrashes();
   handlePlaneControl();
   handlePlaneSpawns();
+  createScore();
 
   function handlePlaneSpawns() {
     const spawnInterval = 5;
