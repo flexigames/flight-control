@@ -1,0 +1,16 @@
+{
+  "dependencies": {
+    "kaboom": "^2000.1.4",
+    "parcel": "^2.0.1"
+  },
+  "name": "flight-control",
+  "description": "",
+  "version": "1.0.0",
+  "main": "game.js",
+  "devDependencies": {},
+  "scripts": {
+    "start": "parcel index.html"
+  },
+  "author": "",
+  "license": "ISC"
+}
