@@ -1,21 +1,21 @@
-import createPlane from '../entities/plane';
-import { getRandomPointOnCircle } from '../lib/lib';
+import createPlane from "../entities/plane";
+import { getRandomPointOnCircle } from "../lib/lib";
 
 export default function game() {
   createPlane(vec2(0, height() / 2), 0);
   createPlane(vec2(width(), height() / 2), 180);
 
-  handlePlaneSpawns();
   handlePlaneCrashes();
   handlePlaneControl();
+  handlePlaneSpawns();
 
   function handlePlaneSpawns() {
-    const spawnInterval = 0.5;
-    const outerSpawnRadius = Math.max(width(), height());
-    const innerSpawnRadius = Math.min(width(), height());
+    const spawnInterval = 5;
+    const outerSpawnRadius = Math.max(width(), height()) / 2;
+    const innerSpawnRadius = Math.min(width(), height()) / 2;
+    const center = vec2(width() / 2, height() / 2);
 
     loop(spawnInterval, () => {
-      const center = vec2(width() / 2, height() / 2);
       const spawn = getRandomPointOnCircle(center, outerSpawnRadius);
       const destination = getRandomPointOnCircle(center, innerSpawnRadius);
 
@@ -24,19 +24,19 @@ export default function game() {
   }
 
   function handlePlaneCrashes() {
-    onCollide('plane', 'plane', () => {
-      go('gameover');
+    onCollide("plane", "plane", () => {
+      go("gameover");
     });
   }
 
   function handlePlaneControl() {
     let activePlaneIndex = 0;
 
-    const planes = get('plane');
+    const planes = get("plane");
 
     planes[activePlaneIndex].toggleActive();
 
-    onKeyPress('space', () => {
+    onKeyPress("space", () => {
       planes[activePlaneIndex].toggleActive();
       activePlaneIndex = (activePlaneIndex + 1) % planes.length;
       planes[activePlaneIndex].toggleActive();
