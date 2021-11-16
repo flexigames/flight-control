@@ -10,6 +10,7 @@ export default function createInput() {
           this.text = "command: " + this.data;
         });
         onKeyRelease("enter", () => {
+          performCommand(this.data);
           this.data = "";
           this.text = "command: ";
         });
@@ -20,4 +21,13 @@ export default function createInput() {
       },
     },
   ]);
+}
+
+function performCommand(command) {
+  const [planeName, degrees] = command.split(" ");
+  const planes = get("plane");
+  const plane = planes.find((plane) => plane.name === planeName);
+  if (!plane) return;
+
+  plane.angle += Number(degrees);
 }
