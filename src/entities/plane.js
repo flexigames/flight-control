@@ -1,11 +1,16 @@
-const size = 16;
+import arrow from '../components/arrow'
+
 const speed = 64;
 
 export default function createPlane() {
+  const direction = randi(360);
+
   return add([
-    rect(size, size),
     pos(width() / 2, height() / 2),
+    arrow(),
     origin('center'),
-    move(randi(360), speed),
+    rotate(direction),
+    move(direction, speed),
+    color(120, 255, 140),
   ]);
 }
