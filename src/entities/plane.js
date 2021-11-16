@@ -1,4 +1,6 @@
 import arrow from '../components/arrow';
+import controllable from '../components/controllable';
+import movable from '../components/movable';
 
 const speed = 64;
 const size = 8;
@@ -13,8 +15,9 @@ export default function createPlane(
     arrow(size),
     origin('center'),
     rotate(direction),
-    move(direction, speed),
     cleanup(),
+    movable(),
+    controllable(),
     area({ width: size, height: size }),
     color(120, 255, 140),
   ]);
