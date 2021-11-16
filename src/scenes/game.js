@@ -10,7 +10,7 @@ export default function game() {
   handlePlaneSpawns();
 
   function handlePlaneSpawns() {
-    const spawnInterval = 5;
+    const spawnInterval = 1;
     const outerSpawnRadius = Math.max(width(), height()) / 2;
     const innerSpawnRadius = Math.min(width(), height()) / 2;
     const center = vec2(width() / 2, height() / 2);
@@ -30,16 +30,16 @@ export default function game() {
   }
 
   function handlePlaneControl() {
-    let activePlaneIndex = 0;
-
     const planes = get("plane");
 
-    planes[activePlaneIndex].toggleActive();
+    let activePlane = planes[0];
+    activePlane.toggleActive();
 
     onKeyPress("space", () => {
-      planes[activePlaneIndex].toggleActive();
-      activePlaneIndex = (activePlaneIndex + 1) % planes.length;
-      planes[activePlaneIndex].toggleActive();
+      const planes = get("plane").filter(({ hasBeenInside }) => hasBeenInside);
+      activePlane.toggleActive();
+      activePlane = planes[(planes.indexOf(activePlane) + 1) % planes.length];
+      activePlane.toggleActive();
     });
   }
 }
